@@ -33,16 +33,14 @@ public class MyServerSocket {
             writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
             new Thread(() -> {
-
-                boolean isWrite = true;
-                while (isWrite) {
+                while (true) {
                     try {
                         System.err.println("보낼 메세지 입력");
                         String sendData = sc.nextLine();
                         writer.write(sendData + "\n");
                         writer.flush();
                         if (sendData.equals("종료"))
-                            isWrite = false;
+                            break;
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
